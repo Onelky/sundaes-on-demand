@@ -2,15 +2,14 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import PropTypes from 'prop-types'
 import ScoopOption from './ScoopOption.jsx'
-
-export const BASE_URL = 'http://localhost:3030/'
+import { BACKEND_BASE_URL } from '../../mocks/handlers'
 
 const Options = ({ optionType }) => {
   const [items, setItems] = useState([])
 
   useEffect(() => {
     axios
-      .get(BASE_URL + optionType)
+      .get(BACKEND_BASE_URL + optionType)
       .then((result) => setItems(result.data))
       .catch((e) => console.error(e))
   }, [optionType])

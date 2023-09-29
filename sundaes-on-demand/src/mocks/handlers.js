@@ -1,8 +1,9 @@
 import { rest } from 'msw'
 
-const BASE_URL = 'http://localhost:3030/'
+export const BACKEND_BASE_URL = 'http://localhost:3030/'
+
 export const handlers = [
-  rest.get(BASE_URL + 'toppings', (req, res, ctx) => {
+  rest.get(BACKEND_BASE_URL + 'toppings', (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json([
@@ -17,7 +18,7 @@ export const handlers = [
       ])
     )
   }),
-  rest.get(BASE_URL + 'scoops', (req, res, ctx) => {
+  rest.get(BACKEND_BASE_URL + 'scoops', (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json([

@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { BASE_URL } from './Options.jsx'
+import { BACKEND_BASE_URL } from '../../mocks/handlers'
 
 const ScoopOption = ({ item }) => {
   return (
     <>
-      <img src={BASE_URL + item.imagePath} alt={item.name + ' scoop'} />
+      <img src={BACKEND_BASE_URL + item.imagePath} alt={item.name + ' scoop'} />
       {item.name}
       <input type={'number'} />
     </>
