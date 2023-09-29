@@ -18,10 +18,10 @@ const SummaryForm = () => {
     <div>
       <Form>
         <Form.Check id={'agree-to-terms'} type="checkbox">
-          <Form.Check.Input type={'checkbox'} onClick={handleClick} checked={checked} />
+          <Form.Check.Input type={'checkbox'} onChange={handleClick} checked={checked} />
           <Form.Check.Label>
             I agree to
-            <OverlayTrigger trigger={'hover'} placement={'right'} overlay={popover}>
+            <OverlayTrigger placement={'right'} overlay={popover}>
               <span style={{ color: 'blue' }}>Terms and Conditions</span>
             </OverlayTrigger>
           </Form.Check.Label>
