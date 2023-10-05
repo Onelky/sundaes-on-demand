@@ -29,12 +29,12 @@ describe('Subtotal Functionality', () => {
     const mCheckbox = await screen.findByRole('checkbox', { name: 'M&Ms' })
     await user.click(mCheckbox)
 
-    const hotFudgeCheckbox = await screen.findByRole('checkbox', { name: 'Hot fudge' })
+    const hotFudgeCheckbox = screen.getByRole('checkbox', { name: 'Hot fudge' })
     await user.click(hotFudgeCheckbox)
 
     expect(toppingsSubtotal).toHaveTextContent('3')
 
-    // Remove Hot Fudge topping and check that subtotal is reduced
+    // Remove Hot Fudge and check subtotal
     await user.click(hotFudgeCheckbox)
     expect(toppingsSubtotal).toHaveTextContent('1.5')
   })
