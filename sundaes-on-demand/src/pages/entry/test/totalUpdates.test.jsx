@@ -14,9 +14,9 @@ describe('Subtotal Functionality', () => {
     await user.type(vanillaInput, '1')
     expect(scoopsSubtotal).toHaveTextContent('2')
 
-    const chocolateInput = await screen.findByRole('spinbutton', { name: 'Chocolate' })
+    const chocolateInput = await screen.findByRole('spinbutton', { name: 'Mint chip' })
     await user.clear(chocolateInput)
     await user.type(chocolateInput, '2')
-    expect(scoopsSubtotal).toHaveTextContent('6.00')
+    expect(scoopsSubtotal).toHaveTextContent('6')
   })
 })

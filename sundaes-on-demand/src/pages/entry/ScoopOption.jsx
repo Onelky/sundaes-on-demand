@@ -17,10 +17,14 @@ const ScoopOption = ({ item }) => {
       <img src={BACKEND_BASE_URL + imagePath} alt={name + ' scoop'} />
       <Form.Group controlId={`${name}-count`}>
         <Form.Label>{name}</Form.Label>
-        <Form.Control type={'number'} defaultValue={0} value={amount} onChange={handleChange} />
+        <Form.Control
+          type={'number'}
+          role={'spinbutton'}
+          defaultValue={0}
+          value={amount}
+          onChange={handleChange}
+        />
       </Form.Group>
-
-      {/*<input type={'number'} value={amount} onChange={handleChange} />*/}
     </Col>
   )
 }
