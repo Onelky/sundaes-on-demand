@@ -16,10 +16,11 @@ const Options = ({ optionType }) => {
   const { totals, optionsCount } = useOrderDetails()
 
   useEffect(() => {
-    axios
-      .get(BACKEND_BASE_URL + optionType)
-      .then((result) => setItems(result.data))
-      .catch(({ response }) => setError(response?.data?.message))
+    if (optionType === SCOOPS || optionType === TOPPINGS)
+      axios
+        .get(BACKEND_BASE_URL + optionType)
+        .then((result) => setItems(result.data))
+        .catch(({ response }) => setError(response?.data?.message))
   }, [optionType])
 
   const Item = optionType === SCOOPS ? ScoopOption : optionType === TOPPINGS ? ToppingOption : null

@@ -7,7 +7,7 @@ import { TOPPINGS } from '../../constants'
 import useOrderDetails from '../../contexts/OrderDetails'
 
 const ToppingOption = ({ item }) => {
-  const { name, imagePath, count = 0 } = item
+  const { name, imagePath, count } = item
   const { updateItemCount } = useOrderDetails()
 
   const handleChange = ({ target }) => {
