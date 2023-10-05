@@ -1,12 +1,11 @@
-import Button from 'react-bootstrap/Button'
+import { OrderDetailProvider } from './contexts/OrderDetails'
+import OrderEntry from './pages/entry/OrderEntry'
 
 function App() {
   return (
-    <div className="App">
-      <Button as="a" variant="secondary">
-        Button as link
-      </Button>
-    </div>
+    <OrderDetailProvider>
+      <OrderEntry />
+    </OrderDetailProvider>
   )
 }
 
