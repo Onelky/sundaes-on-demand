@@ -43,11 +43,15 @@ describe('Subtotal Functionality', () => {
 
 describe('grand total', () => {
   const totalName = /^Grand total: \$\d/
-  test('grand total starts at 0', () => {
+
+  test('grand total starts at 0', async () => {
     render(<OrderEntry />)
     // checks initial value is 0
     const grandTotal = screen.getByRole('heading', { name: totalName })
-    expect(grandTotal).toHaveTextContent('0')
+
+    await waitFor(async () => {
+      expect(grandTotal).toHaveTextContent('0')
+    })
   })
 
   test('grand total updates properly if scoop is added first', async () => {
