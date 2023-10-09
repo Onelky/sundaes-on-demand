@@ -1,7 +1,7 @@
 import { rest } from 'msw'
 import OrderEntry from '../OrderEntry'
 import { server } from '../../../mocks/server.js'
-import { render, screen, waitFor } from '../../../test/testingLibraryUtils'
+import { render, screen, waitFor } from '../../../testUtils/testingLibraryUtils'
 import { BACKEND_BASE_URL } from '../../../mocks/handlers'
 
 describe('OrderEntry Component', () => {

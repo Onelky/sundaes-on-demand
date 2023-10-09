@@ -1,4 +1,4 @@
-import { render, screen } from '../../../test/testingLibraryUtils'
+import { render, screen } from '../../../testUtils/testingLibraryUtils'
 import Options from '../Options'
 
 describe('Options Component', () => {

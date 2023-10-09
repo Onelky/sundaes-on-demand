@@ -1,6 +1,6 @@
 import userEvent from '@testing-library/user-event'
 import Options from '../Options'
-import { render, screen, waitFor } from '../../../test/testingLibraryUtils'
+import { render, screen, waitFor } from '../../../testUtils/testingLibraryUtils'
 import OrderEntry from '../OrderEntry'
 
 describe('Subtotal Functionality', () => {
