@@ -33,4 +33,7 @@ export const handlers = [
       ])
     )
   }),
+  rest.post(BACKEND_BASE_URL + 'order', (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json({ orderNumber: 241 }))
+  }),
 ]
