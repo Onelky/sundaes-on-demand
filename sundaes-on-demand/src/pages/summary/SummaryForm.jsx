@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Popover from 'react-bootstrap/Popover'
+import PropTypes from 'prop-types'
 
 const popover = (
   <Popover>
@@ -10,7 +11,7 @@ const popover = (
   </Popover>
 )
 
-const SummaryForm = () => {
+const SummaryForm = ({ onConfirmClick }) => {
   const [checked, setChecked] = useState(false)
   const handleClick = () => setChecked(!checked)
 
@@ -27,9 +28,15 @@ const SummaryForm = () => {
           </Form.Check.Label>
         </Form.Check>
       </Form>
-      <Button disabled={!checked}>Confirm order</Button>
+      <Button disabled={!checked} onClick={onConfirmClick}>
+        Confirm order
+      </Button>
     </div>
   )
+}
+
+SummaryForm.propTypes = {
+  onConfirmClick: PropTypes.func,
 }
 
 export default SummaryForm

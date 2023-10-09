@@ -2,7 +2,7 @@ import { OrderDetailProvider } from './contexts/OrderDetails'
 import OrderEntry from './pages/entry/OrderEntry'
 import { useState } from 'react'
 import { stages } from './constants'
-import OrderSummary from './pages/summary/OrderSumary'
+import OrderSummary from './pages/summary/OrderSummary'
 
 function App() {
   const [stage, setStage] = useState(stages.orderEntry)
