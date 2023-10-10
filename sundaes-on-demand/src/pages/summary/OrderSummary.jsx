@@ -14,6 +14,7 @@ const OrderSummary = ({ submitOrder }) => {
   }
   return (
     <div>
+      <h1>Order Summary</h1>
       <h3>Scoops: {totals[SCOOPS]}</h3>
       <h3>Toppings: {totals[TOPPINGS]}</h3>
       <h2>Total: {totals[SCOOPS] + totals[TOPPINGS]}</h2>

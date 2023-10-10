@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import App from '../App'
 
@@ -10,18 +10,15 @@ import App from '../App'
 test('Order phases for happy path', async () => {
   const user = userEvent.setup()
 
-  render(<App />)
+  const { unmount } = render(<App />)
   // add ice cream scoops and toppings
 
-  await waitFor(async () => {
-    const scoop = await screen.findByRole('spinbutton', { name: 'Vanilla' })
+  const scoop = await screen.findByRole('spinbutton', { name: 'Vanilla' })
+  await user.clear(scoop)
+  await user.type(scoop, '1')
 
-    await user.clear(scoop)
-    await user.type(scoop, '1')
-
-    const topping = await screen.findByRole('checkbox', { name: 'Hot fudge' })
-    await user.click(topping)
-  })
+  const topping = await screen.findByRole('checkbox', { name: 'Hot fudge' })
+  await user.click(topping)
 
   // find and click order button
 
@@ -30,12 +27,13 @@ test('Order phases for happy path', async () => {
 
   // check that summary information is correct based on the order details
 
-  const scoopsSummary = screen.getByRole('heading', { name: /Scoops: \d/ })
-  expect(scoopsSummary).toHaveTextContent('2')
-  const toppingsSummary = screen.getByRole('heading', { name: /Toppings: \d/ })
-  expect(toppingsSummary).toHaveTextContent('1.5')
-  const totalSummary = screen.getByRole('heading', { name: /Total: \d/i })
-  expect(totalSummary).toHaveTextContent('3.5')
+  const summaryHeader = screen.getByRole('heading', { name: 'Order Summary' })
+  expect(summaryHeader).toBeInTheDocument()
+
+  // check summary items
+  expect(screen.getByRole('heading', { name: /Scoops: \d/ })).toHaveTextContent('2')
+  expect(screen.getByRole('heading', { name: /Toppings: \d/ })).toHaveTextContent('1.5')
+  expect(screen.getByRole('heading', { name: /Total: \d/ })).toHaveTextContent('3.5')
 
   // accept terms and conditions and click confirm order button
 
@@ -43,15 +41,14 @@ test('Order phases for happy path', async () => {
   await user.click(termsCheckbox)
 
   const confirmOrderButton = screen.getByRole('button', { name: 'Confirm order' })
+  await user.click(confirmOrderButton)
 
-  await waitFor(async () => {
-    await user.click(confirmOrderButton)
+  // confirm order number on confirmation page
 
-    // confirm order number on confirmation page
-
-    const orderNumber = await screen.findByText(/Your order number is \d/)
-    expect(orderNumber).toBeInTheDocument()
+  const orderNumber = await screen.findByRole('heading', {
+    name: /Your order number is 100/,
   })
+  expect(orderNumber).toBeInTheDocument()
 
   // click "new order" button and check that subtotals are reset
 
@@ -66,4 +63,6 @@ test('Order phases for happy path', async () => {
 
   const grandTotal = screen.getByRole('heading', { name: /^Grand total: \$\d/ })
   expect(grandTotal).toHaveTextContent('0')
+
+  unmount()
 })
