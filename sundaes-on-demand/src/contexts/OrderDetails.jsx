@@ -4,9 +4,7 @@ import { pricePerItem } from '../constants'
 const OrderDetailsContext = createContext({})
 
 const useOrderDetails = () => {
-  const orderDetailContext = useContext(OrderDetailsContext)
-  if (!orderDetailContext) throw new Error('Wrong!')
-  return orderDetailContext
+  return useContext(OrderDetailsContext)
 }
 
 export const OrderDetailProvider = (props) => {
@@ -23,6 +21,10 @@ export const OrderDetailProvider = (props) => {
     })
   }
 
+  const resetTotals = () => {
+    setOptionsCount({ ...optionsCount, scoops: 0, toppings: 0 })
+  }
+
   const totals = {
     scoops: calculateTotal('scoops'),
     toppings: calculateTotal('toppings'),
@@ -30,7 +32,7 @@ export const OrderDetailProvider = (props) => {
 
   return (
     <OrderDetailsContext.Provider
-      value={{ optionsCount, totals, updateItemCount, calculateTotal }}
+      value={{ optionsCount, totals, updateItemCount, calculateTotal, resetTotals }}
       {...props}
     />
   )
